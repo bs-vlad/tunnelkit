@@ -93,8 +93,10 @@ let package = Package(
             dependencies: [
                 "TunnelKitOpenVPNCore",
                 "CTunnelKitOpenVPNProtocol",
-                "OpenSSL"  // Reference to local OpenSSL target
-            ]
+                "OpenSSL"
+            ],
+            path: "Sources/CTunnelKitOpenVPNProtocol",
+            publicHeadersPath: "../../Frameworks/OpenSSL/iPhoneOS/openssl.framework/Headers"
         ),
         .target(
             name: "TunnelKitOpenVPNAppExtension",
@@ -161,7 +163,7 @@ let package = Package(
                 "OpenSSL"
             ],
             path: "Sources/CTunnelKitOpenVPNProtocol",
-            publicHeadersPath: "../../Frameworks/OpenSSL/iPhoneOS/openssl.framework/Headers"
+            publicHeadersPath: "include"
         ),
         .target(
             name: "__TunnelKitUtils",
@@ -170,8 +172,9 @@ let package = Package(
         .target(
             name: "OpenSSL",
             path: "Frameworks/OpenSSL",
+            exclude: [],
             publicHeadersPath: "iPhoneOS/openssl.framework/Headers",
-            sources: []
+            sources: ["iPhoneOS/openssl.framework/Headers"]
         ),
         .testTarget(
             name: "TunnelKitCoreTests",
