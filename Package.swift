@@ -43,7 +43,7 @@ let package = Package(
         ),
         .target(
             name: "TunnelKitOpenVPNCore",
-            dependencies: ["TunnelKitCore", "CTunnelKitOpenVPNCore", "TunnelKitOpenVPNProtocol"]
+            dependencies: ["TunnelKitCore", "CTunnelKitOpenVPNCore"]
         ),
         .target(
             name: "TunnelKitOpenVPNManager",
