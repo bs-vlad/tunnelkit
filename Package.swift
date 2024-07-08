@@ -36,7 +36,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/SwiftyBeaver/SwiftyBeaver", from: "1.9.0"),
-        .package(url: "https://github.com/bs-vlad/openssl-spm", from: "3.2.0"),
+        .package(url: "https://github.com/bs-vlad/openssl-spm", branch: "main"),
         .package(url: "https://github.com/passepartoutvpn/wireguard-apple", revision: "b79f0f150356d8200a64922ecf041dd020140aa0")
     ],
     targets: [
