@@ -161,7 +161,7 @@ let package = Package(
                 "OpenSSL"
             ],
             path: "Sources/CTunnelKitOpenVPNProtocol",
-            publicHeadersPath: "include"
+            publicHeadersPath: "../../Frameworks/OpenSSL/iPhoneOS/openssl.framework/Headers"
         ),
         .target(
             name: "__TunnelKitUtils",
@@ -170,8 +170,7 @@ let package = Package(
         .target(
             name: "OpenSSL",
             path: "Frameworks/OpenSSL",
-            exclude: [],
-            publicHeadersPath: "iPhoneOS/openssl.framework/Headers",  // Ensure the public headers path is set
+            publicHeadersPath: "iPhoneOS/openssl.framework/Headers",
             sources: []
         ),
         .testTarget(
