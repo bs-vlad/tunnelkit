@@ -36,7 +36,6 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/SwiftyBeaver/SwiftyBeaver", from: "1.9.0"),
-        // Removed the remote OpenSSL package dependency
         .package(url: "https://github.com/passepartoutvpn/wireguard-apple", revision: "b79f0f150356d8200a64922ecf041dd020140aa0")
     ],
     targets: [
@@ -94,7 +93,7 @@ let package = Package(
             dependencies: [
                 "TunnelKitOpenVPNCore",
                 "CTunnelKitOpenVPNProtocol",
-                .target(name: "OpenSSL")  // Add reference to local OpenSSL target
+                "OpenSSL"  // Reference to local OpenSSL target
             ]
         ),
         .target(
@@ -159,8 +158,10 @@ let package = Package(
             dependencies: [
                 "CTunnelKitCore",
                 "CTunnelKitOpenVPNCore",
-                "OpenSSL" // Ensure OpenSSL is referenced
-            ]
+                "OpenSSL"
+            ],
+            path: "Sources/CTunnelKitOpenVPNProtocol",
+            publicHeadersPath: "include"
         ),
         .target(
             name: "__TunnelKitUtils",
@@ -169,6 +170,8 @@ let package = Package(
         .target(
             name: "OpenSSL",
             path: "Frameworks/OpenSSL",
+            exclude: [],
+            publicHeadersPath: "iPhoneOS/openssl.framework/Headers",  // Ensure the public headers path is set
             sources: []
         ),
         .testTarget(
