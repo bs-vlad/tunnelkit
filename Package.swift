@@ -36,7 +36,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/SwiftyBeaver/SwiftyBeaver", from: "1.9.0"),
-        .package(url: "https://github.com/bs-vlad/openssl-apple", branch: "master"),
+        // Removed the remote OpenSSL package dependency
         .package(url: "https://github.com/passepartoutvpn/wireguard-apple", revision: "b79f0f150356d8200a64922ecf041dd020140aa0")
     ],
     targets: [
@@ -93,7 +93,8 @@ let package = Package(
             name: "TunnelKitOpenVPNProtocol",
             dependencies: [
                 "TunnelKitOpenVPNCore",
-                "CTunnelKitOpenVPNProtocol"
+                "CTunnelKitOpenVPNProtocol",
+                .target(name: "OpenSSL")  // Add reference to local OpenSSL target
             ]
         ),
         .target(
@@ -158,12 +159,17 @@ let package = Package(
             dependencies: [
                 "CTunnelKitCore",
                 "CTunnelKitOpenVPNCore",
-                .product(name: "OpenSSL", package: "openssl-apple")
+                "OpenSSL" // Ensure OpenSSL is referenced
             ]
         ),
         .target(
             name: "__TunnelKitUtils",
             dependencies: []
+        ),
+        .target(
+            name: "OpenSSL",
+            path: "Frameworks/OpenSSL",
+            sources: []
         ),
         .testTarget(
             name: "TunnelKitCoreTests",
