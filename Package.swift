@@ -79,7 +79,7 @@ let package = Package(
             dependencies: [
                 "TunnelKitCore",
                 "CTunnelKitOpenVPNCore",
-                "CTunnelKitOpenVPNProtocol" 
+                "CTunnelKitOpenVPNProtocol"
             ]
         ),
         .target(
@@ -158,7 +158,7 @@ let package = Package(
             dependencies: [
                 "CTunnelKitCore",
                 "CTunnelKitOpenVPNCore",
-                "openssl-apple"
+                .product(name: "OpenSSL", package: "openssl-apple")
             ]
         ),
         .target(
