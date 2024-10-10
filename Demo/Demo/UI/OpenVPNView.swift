@@ -93,7 +93,7 @@ private extension OpenVPNView {
 
         let passwordReference: Data
         do {
-            passwordReference = try keychain.set(password: credentials.password, for: credentials.username, context: TunnelIdentifier.openVPN)
+       //    passwordReference = try keychain.set(password: credentials.password, for: credentials.username, context: TunnelIdentifier.openVPN)
         } catch {
             print("Keychain failure: \(error)")
             return
@@ -102,7 +102,7 @@ private extension OpenVPNView {
         let cfg = builder
         Task {
             var extra = NetworkExtensionExtra()
-            extra.passwordReference = passwordReference
+          //  extra.passwordReference = passwordReference
             try await vpn.reconnect(
                 TunnelIdentifier.openVPN,
                 configuration: cfg,

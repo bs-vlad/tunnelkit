@@ -36,7 +36,6 @@
 		0E1178D52B2E2C69005A8432 /* DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED1A5EC2B2A6AE400A0EA90 /* DemoApp.swift */; };
 		0E80FA5127396F5F000F5A45 /* TunnelKitOpenVPNAppExtension in Frameworks */ = {isa = PBXBuildFile; productRef = 0E80FA5027396F5F000F5A45 /* TunnelKitOpenVPNAppExtension */; };
 		0E80FA5327396F66000F5A45 /* TunnelKitOpenVPNAppExtension in Frameworks */ = {isa = PBXBuildFile; productRef = 0E80FA5227396F66000F5A45 /* TunnelKitOpenVPNAppExtension */; };
-		0E81EB51274BB02100E5F2D3 /* TunnelKitWireGuard in Frameworks */ = {isa = PBXBuildFile; productRef = 0E81EB50274BB02100E5F2D3 /* TunnelKitWireGuard */; };
 		0E81EB53274BB02600E5F2D3 /* TunnelKitWireGuard in Frameworks */ = {isa = PBXBuildFile; productRef = 0E81EB52274BB02600E5F2D3 /* TunnelKitWireGuard */; };
 		0E833A85274BC39C008EA397 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E0541A025A2343500EFC5FF /* NetworkExtension.framework */; };
 		0E833A96274BC3B1008EA397 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E0541A025A2343500EFC5FF /* NetworkExtension.framework */; };
@@ -57,8 +56,13 @@
 		0ED1A5F12B2A6AE600A0EA90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ED1A5F02B2A6AE600A0EA90 /* Assets.xcassets */; };
 		0ED1A5F92B2A6B7C00A0EA90 /* TunnelKitOpenVPN in Frameworks */ = {isa = PBXBuildFile; productRef = 0ED1A5F82B2A6B7C00A0EA90 /* TunnelKitOpenVPN */; };
 		0ED1A5FB2B2A6B7C00A0EA90 /* TunnelKitWireGuard in Frameworks */ = {isa = PBXBuildFile; productRef = 0ED1A5FA2B2A6B7C00A0EA90 /* TunnelKitWireGuard */; };
-		0EFD5B312727250500C7D5FD /* TunnelKitOpenVPN in Frameworks */ = {isa = PBXBuildFile; productRef = 0EFD5B302727250500C7D5FD /* TunnelKitOpenVPN */; };
 		0EFD5B332727250B00C7D5FD /* TunnelKitOpenVPN in Frameworks */ = {isa = PBXBuildFile; productRef = 0EFD5B322727250B00C7D5FD /* TunnelKitOpenVPN */; };
+		D5518C642CB7E9F6007C14D6 /* TunnelKit in Frameworks */ = {isa = PBXBuildFile; productRef = D5518C632CB7E9F6007C14D6 /* TunnelKit */; };
+		D5518C662CB7E9F6007C14D6 /* TunnelKitLZO in Frameworks */ = {isa = PBXBuildFile; productRef = D5518C652CB7E9F6007C14D6 /* TunnelKitLZO */; };
+		D5518C682CB7E9F6007C14D6 /* TunnelKitOpenVPN in Frameworks */ = {isa = PBXBuildFile; productRef = D5518C672CB7E9F6007C14D6 /* TunnelKitOpenVPN */; };
+		D5518C6A2CB7E9F6007C14D6 /* TunnelKitOpenVPNAppExtension in Frameworks */ = {isa = PBXBuildFile; productRef = D5518C692CB7E9F6007C14D6 /* TunnelKitOpenVPNAppExtension */; };
+		D5518C6C2CB7E9F6007C14D6 /* TunnelKitWireGuard in Frameworks */ = {isa = PBXBuildFile; productRef = D5518C6B2CB7E9F6007C14D6 /* TunnelKitWireGuard */; };
+		D5518C6E2CB7E9F6007C14D6 /* TunnelKitWireGuardAppExtension in Frameworks */ = {isa = PBXBuildFile; productRef = D5518C6D2CB7E9F6007C14D6 /* TunnelKitWireGuardAppExtension */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -241,8 +245,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E81EB51274BB02100E5F2D3 /* TunnelKitWireGuard in Frameworks */,
-				0EFD5B312727250500C7D5FD /* TunnelKitOpenVPN in Frameworks */,
+				D5518C6C2CB7E9F6007C14D6 /* TunnelKitWireGuard in Frameworks */,
+				D5518C642CB7E9F6007C14D6 /* TunnelKit in Frameworks */,
+				D5518C6E2CB7E9F6007C14D6 /* TunnelKitWireGuardAppExtension in Frameworks */,
+				D5518C682CB7E9F6007C14D6 /* TunnelKitOpenVPN in Frameworks */,
+				D5518C6A2CB7E9F6007C14D6 /* TunnelKitOpenVPNAppExtension in Frameworks */,
+				D5518C662CB7E9F6007C14D6 /* TunnelKitLZO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,8 +600,12 @@
 			);
 			name = "TunnelKitDemo-macOS";
 			packageProductDependencies = (
-				0EFD5B302727250500C7D5FD /* TunnelKitOpenVPN */,
-				0E81EB50274BB02100E5F2D3 /* TunnelKitWireGuard */,
+				D5518C632CB7E9F6007C14D6 /* TunnelKit */,
+				D5518C652CB7E9F6007C14D6 /* TunnelKitLZO */,
+				D5518C672CB7E9F6007C14D6 /* TunnelKitOpenVPN */,
+				D5518C692CB7E9F6007C14D6 /* TunnelKitOpenVPNAppExtension */,
+				D5518C6B2CB7E9F6007C14D6 /* TunnelKitWireGuard */,
+				D5518C6D2CB7E9F6007C14D6 /* TunnelKitWireGuardAppExtension */,
 			);
 			productName = Demo;
 			productReference = 0E05422C25A236EB00EFC5FF /* TunnelKitDemo-macOS.app */;
@@ -1076,14 +1088,15 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = Demo/iOS/Demo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DTDYD63ZX9;
+				DEVELOPMENT_TEAM = KU68JYYM6X;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.algoritmico.ios.TunnelKit.Demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.tunnelkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1097,13 +1110,14 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = Demo/iOS/Demo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DTDYD63ZX9;
+				DEVELOPMENT_TEAM = KU68JYYM6X;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.algoritmico.ios.TunnelKit.Demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.tunnelkit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1115,9 +1129,10 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = Demo/iOS/DemoTunnel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DTDYD63ZX9;
+				DEVELOPMENT_TEAM = KU68JYYM6X;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Demo/DemoTunnel.plist;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1125,7 +1140,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.algoritmico.ios.TunnelKit.Demo.OpenVPN-Tunnel";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.test.tunnelkit.OpenVPN-Tunnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1138,16 +1153,17 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = Demo/iOS/DemoTunnel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DTDYD63ZX9;
+				DEVELOPMENT_TEAM = KU68JYYM6X;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Demo/DemoTunnel.plist;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.algoritmico.ios.TunnelKit.Demo.OpenVPN-Tunnel";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.test.tunnelkit.OpenVPN-Tunnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1165,15 +1181,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = DTDYD63ZX9;
+				DEVELOPMENT_TEAM = KU68JYYM6X;
 				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.algoritmico.macos.TunnelKit.Demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.tunnelkit.mac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -1192,14 +1209,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = DTDYD63ZX9;
+				DEVELOPMENT_TEAM = KU68JYYM6X;
 				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.algoritmico.macos.TunnelKit.Demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.tunnelkit.mac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -1215,10 +1233,11 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = DTDYD63ZX9;
+				DEVELOPMENT_TEAM = KU68JYYM6X;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Demo/DemoTunnel.plist;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1226,7 +1245,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.algoritmico.macos.TunnelKit.Demo.OpenVPN-Tunnel";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.test.tunnelkit.mac.OpenVPN-Tunnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1241,17 +1260,18 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = DTDYD63ZX9;
+				DEVELOPMENT_TEAM = KU68JYYM6X;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Demo/DemoTunnel.plist;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.algoritmico.macos.TunnelKit.Demo.OpenVPN-Tunnel";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.test.tunnelkit.mac.OpenVPN-Tunnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1422,9 +1442,10 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = Demo/iOS/DemoTunnel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DTDYD63ZX9;
+				DEVELOPMENT_TEAM = KU68JYYM6X;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Demo/DemoTunnel.plist;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1432,7 +1453,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.algoritmico.ios.TunnelKit.Demo.WireGuard-Tunnel";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.test.tunnelkit.WireGuard-Tunnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1450,16 +1471,17 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = Demo/iOS/DemoTunnel.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DTDYD63ZX9;
+				DEVELOPMENT_TEAM = KU68JYYM6X;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Demo/DemoTunnel.plist;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.algoritmico.ios.TunnelKit.Demo.WireGuard-Tunnel";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.test.tunnelkit.WireGuard-Tunnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1478,10 +1500,11 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = DTDYD63ZX9;
+				DEVELOPMENT_TEAM = KU68JYYM6X;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Demo/DemoTunnel.plist;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1489,7 +1512,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.algoritmico.macos.TunnelKit.Demo.WireGuard-Tunnel";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.test.tunnelkit.mac.WireGuard-Tunnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1509,17 +1532,18 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = DTDYD63ZX9;
+				DEVELOPMENT_TEAM = KU68JYYM6X;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Demo/DemoTunnel.plist;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.algoritmico.macos.TunnelKit.Demo.WireGuard-Tunnel";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.test.tunnelkit.mac.WireGuard-Tunnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -1556,10 +1580,11 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = DTDYD63ZX9;
+				DEVELOPMENT_TEAM = KU68JYYM6X;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Demo/DemoTunnel.plist;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1567,7 +1592,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.algoritmico.tvos.TunnelKit.Demo.OpenVPN-Tunnel";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.test.tunnelkit.tv.OpenVPN-Tunnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -1582,17 +1607,18 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = DTDYD63ZX9;
+				DEVELOPMENT_TEAM = KU68JYYM6X;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Demo/DemoTunnel.plist;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.algoritmico.tvos.TunnelKit.Demo.OpenVPN-Tunnel";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.test.tunnelkit.tv.OpenVPN-Tunnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -1609,10 +1635,11 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = DTDYD63ZX9;
+				DEVELOPMENT_TEAM = KU68JYYM6X;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Demo/DemoTunnel.plist;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1620,7 +1647,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.algoritmico.tvos.TunnelKit.Demo.WireGuard-Tunnel";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.test.tunnelkit.tv.WireGuard-Tunnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -1640,17 +1667,18 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = DTDYD63ZX9;
+				DEVELOPMENT_TEAM = KU68JYYM6X;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Demo/DemoTunnel.plist;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.algoritmico.tvos.TunnelKit.Demo.WireGuard-Tunnel";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.test.tunnelkit.tv.WireGuard-Tunnel";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
@@ -1670,9 +1698,10 @@
 				CODE_SIGN_ENTITLEMENTS = Demo/tvOS/Demo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DTDYD63ZX9;
+				DEVELOPMENT_TEAM = KU68JYYM6X;
 				ENABLE_PREVIEWS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1681,7 +1710,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.algoritmico.tvos.TunnelKit.Demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.tunnelkit.tv;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
@@ -1703,9 +1732,10 @@
 				CODE_SIGN_ENTITLEMENTS = Demo/tvOS/Demo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DTDYD63ZX9;
+				DEVELOPMENT_TEAM = KU68JYYM6X;
 				ENABLE_PREVIEWS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1713,7 +1743,7 @@
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.algoritmico.tvos.TunnelKit.Demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.tunnelkit.tv;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
@@ -1870,10 +1900,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = TunnelKitOpenVPNAppExtension;
 		};
-		0E81EB50274BB02100E5F2D3 /* TunnelKitWireGuard */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = TunnelKitWireGuard;
-		};
 		0E81EB52274BB02600E5F2D3 /* TunnelKitWireGuard */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TunnelKitWireGuard;
@@ -1902,13 +1928,33 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = TunnelKitWireGuard;
 		};
-		0EFD5B302727250500C7D5FD /* TunnelKitOpenVPN */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = TunnelKitOpenVPN;
-		};
 		0EFD5B322727250B00C7D5FD /* TunnelKitOpenVPN */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TunnelKitOpenVPN;
+		};
+		D5518C632CB7E9F6007C14D6 /* TunnelKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TunnelKit;
+		};
+		D5518C652CB7E9F6007C14D6 /* TunnelKitLZO */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TunnelKitLZO;
+		};
+		D5518C672CB7E9F6007C14D6 /* TunnelKitOpenVPN */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TunnelKitOpenVPN;
+		};
+		D5518C692CB7E9F6007C14D6 /* TunnelKitOpenVPNAppExtension */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TunnelKitOpenVPNAppExtension;
+		};
+		D5518C6B2CB7E9F6007C14D6 /* TunnelKitWireGuard */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TunnelKitWireGuard;
+		};
+		D5518C6D2CB7E9F6007C14D6 /* TunnelKitWireGuardAppExtension */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TunnelKitWireGuardAppExtension;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

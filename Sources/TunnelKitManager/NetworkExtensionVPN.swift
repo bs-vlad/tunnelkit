@@ -48,8 +48,25 @@ public class NetworkExtensionVPN: VPN {
     // MARK: Public
 
     public func prepare() async {
-        _ = try? await NETunnelProviderManager.loadAllFromPreferences()
+        do {
+            try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+                NETunnelProviderManager.loadAllFromPreferences { managers, error in
+                    if let error = error {
+                        log.error("Failed to load VPN managers during prepare: \(error)")
+                        continuation.resume(throwing: error)
+                    } else {
+                        // Perform any necessary setup with managers here, if needed
+                        continuation.resume(returning: ())
+                    }
+                }
+            }
+            log.info("VPN managers loaded successfully during prepare.")
+        } catch {
+            log.error("Error in prepare(): \(error)")
+        }
     }
+
+
 
     public func install(
         _ tunnelBundleIdentifier: String,
@@ -99,17 +116,28 @@ public class NetworkExtensionVPN: VPN {
     }
 
     public func disconnect() async {
-        guard let managers = try? await lookupAll() else {
-            return
-        }
-        guard !managers.isEmpty else {
-            return
-        }
-        for m in managers {
-            m.connection.stopVPNTunnel()
-            m.isOnDemandEnabled = false
-            m.isEnabled = false
-            try? await m.saveToPreferences()
+        do {
+            let managers = try await lookupAll()
+            guard !managers.isEmpty else {
+                print("No VPN managers found to disconnect.")
+                return
+            }
+            
+            for m in managers {
+                do {
+                    m.connection.stopVPNTunnel()
+                    m.isOnDemandEnabled = false
+                    m.isEnabled = false
+                    try await m.saveToPreferences()
+                    print("Disconnected VPN manager: \(m)")
+                } catch {
+                    print("Failed to disconnect VPN manager \(m): \(error)")
+                }
+            }
+            
+            print("VPN disconnected successfully.")
+        } catch {
+            print("Error during VPN disconnect: \(error)")
         }
     }
 
@@ -208,8 +236,17 @@ public class NetworkExtensionVPN: VPN {
     }
 
     private func lookupAll() async throws -> [NETunnelProviderManager] {
-        try await NETunnelProviderManager.loadAllFromPreferences()
+        try await withCheckedThrowingContinuation { continuation in
+            NETunnelProviderManager.loadAllFromPreferences { managers, error in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                } else {
+                    continuation.resume(returning: managers ?? [])
+                }
+            }
+        }
     }
+
 
     // MARK: Notifications
 
