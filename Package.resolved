@@ -21,9 +21,9 @@
     {
       "identity" : "wireguard-apple",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/passepartoutvpn/wireguard-apple",
+      "location" : "https://github.com/protektservices/wireguard-apple",
       "state" : {
-        "revision" : "b79f0f150356d8200a64922ecf041dd020140aa0"
+        "revision" : "52ec2cbafa90cb319322b5fa9c4e68b66e5de186"
       }
     }
   ],

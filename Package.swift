@@ -1,11 +1,12 @@
 // swift-tools-version:5.9
+
 import PackageDescription
 
 let package = Package(
     name: "TunnelKit",
     platforms: [
-        .iOS(.v15),
-        .macOS(.v12),
+        .iOS(.v16),
+        .macOS(.v13),
         .tvOS(.v17)
     ],
     products: [
@@ -35,9 +36,9 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/SwiftyBeaver/SwiftyBeaver", from: "1.9.0"),
+        .package(url: "https://github.com/SwiftyBeaver/SwiftyBeaver.git", from: "1.9.0"),
         .package(url: "https://github.com/krzyzanowskim/OpenSSL-Package.git", from: "3.3.2000"),
-        .package(url: "https://github.com/WireGuard/wireguard-apple", revision: "2fec12a6e1f6e3460b6ee483aa00ad29cddadab1")
+        .package(url: "https://github.com/protektservices/wireguard-apple", revision: "52ec2cbafa90cb319322b5fa9c4e68b66e5de186")
     ],
     targets: [
         .target(
@@ -94,7 +95,7 @@ let package = Package(
             dependencies: [
                 "TunnelKitOpenVPNCore",
                 "CTunnelKitOpenVPNProtocol",
-                .product(name: "OpenSSL", package: "OpenSSL-Package") // Correct product reference
+                .product(name: "OpenSSL", package: "OpenSSL-Package") // Ensure OpenSSL is referenced properly
             ]
         ),
         .target(
@@ -159,7 +160,7 @@ let package = Package(
             dependencies: [
                 "CTunnelKitCore",
                 "CTunnelKitOpenVPNCore",
-                .product(name: "OpenSSL", package: "OpenSSL-Package") // Ensure OpenSSL is referenced properly
+                .product(name: "OpenSSL", package: "OpenSSL-Package")
             ]
         ),
         .target(
@@ -198,6 +199,7 @@ let package = Package(
                 "TunnelKitCore",
                 "TunnelKitLZO"
             ]
+
         )
     ]
 )
