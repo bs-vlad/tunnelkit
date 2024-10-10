@@ -25,48 +25,40 @@
 
 import Foundation
 import NetworkExtension
-import SwiftyBeaver
+import os.log
 
-private let log = SwiftyBeaver.self
+private let logger = Logger(subsystem: "VPN Lib", category: "NetworkExtensionVPN")
 
 /// `VPN` based on the NetworkExtension framework.
 public class NetworkExtensionVPN: VPN {
 
-    /**
-     Initializes a provider.
-     */
-    public init() {
-        let nc = NotificationCenter.default
-        nc.addObserver(self, selector: #selector(vpnDidUpdate(_:)), name: .NEVPNStatusDidChange, object: nil)
-        nc.addObserver(self, selector: #selector(vpnDidReinstall(_:)), name: .NEVPNConfigurationChange, object: nil)
+    private let notificationCenter: NotificationCenter
+    private let queue = DispatchQueue(label: "com.TunnelKit.NetworkExtensionVPN")
+
+    public init(notificationCenter: NotificationCenter = .default) {
+        self.notificationCenter = notificationCenter
+        setupObservers()
     }
 
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        notificationCenter.removeObserver(self)
+    }
+
+    private func setupObservers() {
+        notificationCenter.addObserver(self, selector: #selector(vpnDidUpdate(_:)), name: .NEVPNStatusDidChange, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(vpnDidReinstall(_:)), name: .NEVPNConfigurationChange, object: nil)
     }
 
     // MARK: Public
 
     public func prepare() async {
         do {
-            try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
-                NETunnelProviderManager.loadAllFromPreferences { managers, error in
-                    if let error = error {
-                        log.error("Failed to load VPN managers during prepare: \(error)")
-                        continuation.resume(throwing: error)
-                    } else {
-                        // Perform any necessary setup with managers here, if needed
-                        continuation.resume(returning: ())
-                    }
-                }
-            }
-            log.info("VPN managers loaded successfully during prepare.")
+            let managers = try await NETunnelProviderManager.loadAllFromPreferences()
+            logger.info("VPN managers loaded successfully during prepare: \(managers.count) managers")
         } catch {
-            log.error("Error in prepare(): \(error)")
+            logger.error("Failed to load VPN managers during prepare: \(error.localizedDescription)")
         }
     }
-
-
 
     public func install(
         _ tunnelBundleIdentifier: String,
@@ -78,18 +70,6 @@ public class NetworkExtensionVPN: VPN {
             configuration: configuration,
             extra: extra
         )
-    }
-
-    public func reconnect(after: DispatchTimeInterval) async throws {
-        let managers = try await lookupAll()
-        guard let manager = managers.first else {
-            return
-        }
-        if manager.connection.status != .disconnected {
-            manager.connection.stopVPNTunnel()
-            try await Task.sleep(nanoseconds: after.nanoseconds)
-        }
-        try manager.connection.startVPNTunnel()
     }
 
     public func reconnect(
@@ -106,51 +86,106 @@ public class NetworkExtensionVPN: VPN {
             )
             if manager.connection.status != .disconnected {
                 manager.connection.stopVPNTunnel()
-                try await Task.sleep(nanoseconds: after.nanoseconds)
+                
+                if #available(macOS 13.0, iOS 16.0, *) {
+                    try await Task.sleep(for: .nanoseconds(after.nanoseconds))
+                } else {
+                    // Fallback for earlier versions
+                    try await Task.sleep(nanoseconds: UInt64(after.nanoseconds))
+                }
             }
-            try manager.connection.startVPNTunnel()
+            try await manager.connection.startVPNTunnel()
+            logger.info("VPN reconnected successfully with new configuration")
         } catch {
             notifyInstallError(error)
             throw error
         }
     }
 
+    public func reconnect(after: DispatchTimeInterval) async throws {
+        let managers = try await lookupAll()
+        guard let manager = managers.first else {
+            logger.warning("No VPN managers found for reconnection")
+            return
+        }
+        
+        if manager.connection.status != .disconnected {
+            manager.connection.stopVPNTunnel()
+            
+            if #available(macOS 13.0, iOS 16.0, *) {
+                try await Task.sleep(for: .nanoseconds(after.nanoseconds))
+            } else {
+                try await Task.sleep(nanoseconds: UInt64(after.nanoseconds))
+            }
+        } 
+        
+        try await manager.connection.startVPNTunnel()
+        logger.info("VPN reconnected successfully")
+    }
+
     public func disconnect() async {
         do {
             let managers = try await lookupAll()
             guard !managers.isEmpty else {
-                print("No VPN managers found to disconnect.")
+                logger.warning("No VPN managers found to disconnect")
                 return
             }
             
-            for m in managers {
-                do {
-                    m.connection.stopVPNTunnel()
-                    m.isOnDemandEnabled = false
-                    m.isEnabled = false
-                    try await m.saveToPreferences()
-                    print("Disconnected VPN manager: \(m)")
-                } catch {
-                    print("Failed to disconnect VPN manager \(m): \(error)")
+            await withTaskGroup(of: Void.self) { group in
+                for manager in managers {
+                    group.addTask {
+                        await self.disconnectManager(manager)
+                    }
                 }
             }
             
-            print("VPN disconnected successfully.")
+            logger.info("VPN disconnected successfully")
         } catch {
-            print("Error during VPN disconnect: \(error)")
+            logger.error("Error during VPN disconnect: \(error.localizedDescription)")
+        }
+    }
+
+    private func disconnectManager(_ manager: NETunnelProviderManager) async {
+        do {
+            manager.connection.stopVPNTunnel()
+            manager.isOnDemandEnabled = false
+            manager.isEnabled = false
+            try await manager.saveToPreferences()
+            logger.debug("Disconnected VPN manager: \(manager.localizedDescription ?? "Unknown")")
+        } catch {
+            logger.error("Failed to disconnect VPN manager \(manager.localizedDescription ?? "Unknown"): \(error.localizedDescription)")
         }
     }
 
     public func uninstall() async {
-        guard let managers = try? await lookupAll() else {
-            return
+        do {
+            let managers = try await lookupAll()
+            guard !managers.isEmpty else {
+                logger.warning("No VPN managers found to uninstall")
+                return
+            }
+            
+            await withTaskGroup(of: Void.self) { group in
+                for manager in managers {
+                    group.addTask {
+                        await self.uninstallManager(manager)
+                    }
+                }
+            }
+            
+            logger.info("VPN uninstalled successfully")
+        } catch {
+            logger.error("Error during VPN uninstall: \(error.localizedDescription)")
         }
-        guard !managers.isEmpty else {
-            return
-        }
-        for m in managers {
-            m.connection.stopVPNTunnel()
-            try? await m.removeFromPreferences()
+    }
+
+    private func uninstallManager(_ manager: NETunnelProviderManager) async {
+        manager.connection.stopVPNTunnel()
+        do {
+            try await manager.removeFromPreferences()
+            logger.debug("Uninstalled VPN manager: \(manager.localizedDescription ?? "Unknown")")
+        } catch {
+            logger.error("Failed to uninstall VPN manager \(manager.localizedDescription ?? "Unknown"): \(error.localizedDescription)")
         }
     }
 
@@ -236,17 +271,8 @@ public class NetworkExtensionVPN: VPN {
     }
 
     private func lookupAll() async throws -> [NETunnelProviderManager] {
-        try await withCheckedThrowingContinuation { continuation in
-            NETunnelProviderManager.loadAllFromPreferences { managers, error in
-                if let error = error {
-                    continuation.resume(throwing: error)
-                } else {
-                    continuation.resume(returning: managers ?? [])
-                }
-            }
-        }
+        try await NETunnelProviderManager.loadAllFromPreferences()
     }
-
 
     // MARK: Notifications
 
@@ -268,7 +294,7 @@ public class NetworkExtensionVPN: VPN {
         guard let bundleId = manager.tunnelBundleIdentifier else {
             return
         }
-        log.debug("VPN did reinstall (\(bundleId)): isEnabled=\(manager.isEnabled)")
+        logger.debug("VPN did reinstall (\(bundleId)): isEnabled=\(manager.isEnabled)")
 
         var notification = Notification(name: VPNNotification.didReinstall)
         notification.vpnBundleIdentifier = bundleId
@@ -278,13 +304,13 @@ public class NetworkExtensionVPN: VPN {
 
     private func notifyStatus(_ connection: NETunnelProviderSession) {
         guard let _ = connection.manager.localizedDescription else {
-            log.verbose("Ignoring VPN notification from bogus manager")
+            logger.debug("Ignoring VPN notification from bogus manager")
             return
         }
         guard let bundleId = connection.manager.tunnelBundleIdentifier else {
             return
         }
-        log.debug("VPN status did change (\(bundleId)): isEnabled=\(connection.manager.isEnabled), status=\(connection.status.rawValue)")
+        logger.debug("VPN status did change (\(bundleId)): isEnabled=\(connection.manager.isEnabled), status=\(connection.status.rawValue)")
         var notification = Notification(name: VPNNotification.didChangeStatus)
         notification.vpnBundleIdentifier = bundleId
         notification.vpnIsEnabled = connection.manager.isEnabled
@@ -294,7 +320,7 @@ public class NetworkExtensionVPN: VPN {
     }
 
     private func notifyInstallError(_ error: Error) {
-        log.error("VPN installation failed: \(error))")
+        logger.error("VPN installation failed: \(error.localizedDescription)")
 
         var notification = Notification(name: VPNNotification.didFail)
         notification.vpnError = error
@@ -306,7 +332,7 @@ public class NetworkExtensionVPN: VPN {
 private extension NEVPNManager {
     var tunnelBundleIdentifier: String? {
         guard let proto = protocolConfiguration as? NETunnelProviderProtocol else {
-            log.warning("No bundle identifier found because protocolConfiguration is not NETunnelProviderProtocol (\(type(of: protocolConfiguration))")
+            logger.warning("No bundle identifier found because protocolConfiguration is not NETunnelProviderProtocol (\(type(of: self.protocolConfiguration))")
             return nil
         }
         return proto.providerBundleIdentifier

@@ -37,7 +37,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/SwiftyBeaver/SwiftyBeaver", from: "1.9.0"),
         .package(url: "https://github.com/krzyzanowskim/OpenSSL-Package.git", from: "3.3.2000"),
-        .package(url: "https://github.com/passepartoutvpn/wireguard-apple", revision: "b79f0f150356d8200a64922ecf041dd020140aa0")
+        .package(url: "https://github.com/WireGuard/wireguard-apple", revision: "2fec12a6e1f6e3460b6ee483aa00ad29cddadab1")
     ],
     targets: [
         .target(
